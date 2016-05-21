@@ -29,7 +29,7 @@ $(document).ready(function() {
     function getTemp() {
         $.ajax({
             type: 'GET',
-            url: ('http://api.openweathermap.org/data/2.5/weather?zip=' + zip + ',us' + '&appid=34f263a97c76ca80515516d865951590&units=' + units),
+            url: ('http://api.openweathermap.org/data/2.5/weather?zip=' + zip + ',us' + '&appid=2310fb952e694107d99d1667a348d72d&units=' + units),
             success: function(e) {
                 weatherStat = e.weather[0].main;
                 deg = Math.round(e.main.temp);
@@ -139,6 +139,6 @@ function peekaBoo(){
 });
     });
   // initialize page
-    getIp();
+     getIp();
     getTemp();
 });
