@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html >
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+
+    <title>CodePen - Weather App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'>
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.9/css/weather-icons.min.css'>
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Oswald:400,700'>
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css'>
+<link rel='stylesheet' href='css/style.css'>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js'></script>
+<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js'></script>
+  </head>
+
+  <body>
+
+
+<div class="container">
+    <h1 id="city"></h1>
+    <p id="temp"></p><h1><i id="weatherIcon"></h1>
+      <p id="changeLoc" class="cL"><a>Change Location</a></p>
+      <div class="form-group hider" id="zipUpdate">
+        <input type="text" class="form-control" id="address" placeholder="Zip Code">
+        <p class="help-block" id="update"><a>Update</a></p>
+      </div>
+    </div>
+<!-- Modal -->
+  <div class="modal fade" id="modal" role="dialog" tabindex="-1">
+    <div class="modal-dialog modal-sm">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <p class="modal-title">"Why isn't my location accurate?"</p>
+        </div>
+        <div class="modal-body">
+          <h4>This site uses your public IP to make an estimate of your location. If you are using a mobile device or VPN, this IP location may be innacurate. You can click change location to update your location manually.</h4>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+ <div class="footer"><h6>Created by &nbsp;<a href="http://codepen.io/BobbyMcWho">Bobby McDonald</a></h6></div>
+
+<script src='js/main.js'></script>
+  </body>
+</html>
