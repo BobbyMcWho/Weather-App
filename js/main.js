@@ -4,8 +4,9 @@ $(document).ready(function() {
     var deg = "";
     var units = "imperial";
     var degs = 'F';
-    var weatherStat = "";
+    var weatherStat;
     var cityName="";
+    var timeDay, sunrise, sunset;
 // Get visitor's zip code based on IP, and set it to the var zip
   function getIp()  {$.ajax({
         type: 'GET',
@@ -31,9 +32,12 @@ $(document).ready(function() {
             type: 'GET',
             url: ('http://api.openweathermap.org/data/2.5/weather?zip=' + zip + ',us' + '&appid=2310fb952e694107d99d1667a348d72d&units=' + units),
             success: function(e) {
-                weatherStat = e.weather[0].main;
+                weatherStat = e.weather[0].id;
                 deg = Math.round(e.main.temp);
                 cityName = e.name;
+                sunrise = e.sys.sunrise - 86400;
+                sunset = e.sys.sunset - 86400;
+                timeDay = e.dt;
               fillTemp();
             },
             complete: function(){changeIcon();}
@@ -69,8 +73,8 @@ function setClick(){
   $('#whyHere').click(function()
   {
     $('#modal').modal();
-   })
-                      } 
+  });
+                      }
 //Insert html <a id="units"> into <p id="temp">
 function fillTemp(){
   $('#temp').html(deg + "&#176;" + '<a id="units" >' + degs + '</a>');
@@ -80,24 +84,30 @@ function fillTemp(){
 //Change icon displayed based on value of weatherStat
 function changeIcon(){
   var $weatherIcon = $('#weatherIcon');
-  if (weatherStat == 'Thunderstorm'){
-    $weatherIcon.attr('class',"wi wi-thunderstorm");
+  if (timeDay >= sunrise && timeDay <= sunset){
+    $weatherIcon.attr('class',"wi wi-owm-day-" + weatherStat);
   }
-  if (weatherStat == 'Drizzle' || 'Rain'){
-    $weatherIcon.attr('class',"wi wi-showers");
-  }
-  if (weatherStat == 'Snow'){
-    $weatherIcon.attr('class',"wi wi-snow");
-  }
-  if (weatherStat == 'Atmosphere'){
-    $weatherIcon.attr('class',"wi wi-smoke");
-  }
-  if (weatherStat == 'Clear'){
-    $weatherIcon.attr('class',"wi wi-wu-clear");
-  }
-  if (weatherStat == 'Extreme'){
-    $weatherIcon.attr('class',"wi wi-windy");
-  }
+  else if (timeDay <= sunrise || timeDay >= sunset){
+    $weatherIcon.attr('class',"wi wi-owm-night-" + weatherStat);}
+    else {$weatherIcon.attr('class',"wi wi-owm-" + weatherStat);}
+  // if (weatherStat == 'Thunderstorm'){
+  //   $weatherIcon.attr('class',"wi wi-thunderstorm");
+  // }
+  // if (weatherStat == 'Drizzle' || 'Rain'){
+  //   $weatherIcon.attr('class',"wi wi-showers");
+  // }
+  // if (weatherStat == 'Snow'){
+  //   $weatherIcon.attr('class',"wi wi-snow");
+  // }
+  // if (weatherStat == 'Atmosphere'){
+  //   $weatherIcon.attr('class',"wi wi-smoke");
+  // }
+  // if (weatherStat == 'Clear'){
+  //   $weatherIcon.attr('class',"wi wi-wu-clear");
+  // }
+  // if (weatherStat == 'Extreme'){
+  //   $weatherIcon.attr('class',"wi wi-windy");
+  // }
 }
 //New Zip script
 function updateWeather(){
@@ -131,7 +141,7 @@ function peekaBoo(){
         this.value = '';
     }
 });
-      //reinput 
+      //reinput
       $("#address").blur(function() {
     if (this.value === "") {
         this.value = zip;
