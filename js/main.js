@@ -35,8 +35,8 @@ $(document).ready(function() {
                 weatherStat = e.weather[0].id;
                 deg = Math.round(e.main.temp);
                 cityName = e.name;
-                sunrise = e.sys.sunrise - 86400;
-                sunset = e.sys.sunset - 86400;
+                sunrise = e.sys.sunrise;
+                sunset = e.sys.sunset;
                 timeDay = e.dt;
               fillTemp();
             },
@@ -84,12 +84,13 @@ function fillTemp(){
 //Change icon displayed based on value of weatherStat
 function changeIcon(){
   var $weatherIcon = $('#weatherIcon');
-  if (timeDay >= sunrise && timeDay <= sunset){
-    $weatherIcon.attr('class',"wi wi-owm-day-" + weatherStat);
-  }
-  else if (timeDay <= sunrise || timeDay >= sunset){
-    $weatherIcon.attr('class',"wi wi-owm-night-" + weatherStat);}
-    else {$weatherIcon.attr('class',"wi wi-owm-" + weatherStat);}
+  // if (timeDay >= sunrise && timeDay <= sunset){
+  //   $weatherIcon.attr('class',"wi wi-owm-day-" + weatherStat);
+  // }
+  // else if (timeDay <= sunrise || timeDay >= sunset){
+  //   $weatherIcon.attr('class',"wi wi-owm-night-" + weatherStat);}
+  //   else
+    {$weatherIcon.attr('class',"wi wi-owm-" + weatherStat);}
   // if (weatherStat == 'Thunderstorm'){
   //   $weatherIcon.attr('class',"wi wi-thunderstorm");
   // }
