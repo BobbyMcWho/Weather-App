@@ -15,6 +15,7 @@ $(document).ready(function() {
             zip = data.zip;
             $('#address').attr('value',zip);
         },
+        error: alert('Error retrieving IP address. Some ad blockers may cause errors.'),
         complete: getTemp
     });}
     //Check for current units, and return appropriate abbreviation
@@ -84,31 +85,8 @@ function fillTemp(){
 //Change icon displayed based on value of weatherStat
 function changeIcon(){
   var $weatherIcon = $('#weatherIcon');
-  // if (timeDay >= sunrise && timeDay <= sunset){
-  //   $weatherIcon.attr('class',"wi wi-owm-day-" + weatherStat);
-  // }
-  // else if (timeDay <= sunrise || timeDay >= sunset){
-  //   $weatherIcon.attr('class',"wi wi-owm-night-" + weatherStat);}
-  //   else
     {$weatherIcon.attr('class',"wi wi-owm-" + weatherStat);}
-  // if (weatherStat == 'Thunderstorm'){
-  //   $weatherIcon.attr('class',"wi wi-thunderstorm");
-  // }
-  // if (weatherStat == 'Drizzle' || 'Rain'){
-  //   $weatherIcon.attr('class',"wi wi-showers");
-  // }
-  // if (weatherStat == 'Snow'){
-  //   $weatherIcon.attr('class',"wi wi-snow");
-  // }
-  // if (weatherStat == 'Atmosphere'){
-  //   $weatherIcon.attr('class',"wi wi-smoke");
-  // }
-  // if (weatherStat == 'Clear'){
-  //   $weatherIcon.attr('class',"wi wi-wu-clear");
-  // }
-  // if (weatherStat == 'Extreme'){
-  //   $weatherIcon.attr('class',"wi wi-windy");
-  // }
+
 }
 //New Zip script
 function updateWeather(){
